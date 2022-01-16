@@ -50,21 +50,41 @@ function buscarClima(e) {
 
     function mostrarClima(datos) {
             
-            const { main: {temp,temp_max,temp_min}}  = datos;
+            const {name, main: {temp,temp_max,temp_min}}  = datos;
         
                     const centigrados = convertirGrados(temp);
+                    const centigradosMax = convertirGrados(temp_max);
+                    const centigradosMin = convertirGrados(temp_min);
+
                 
                     const actual = document.createElement('p');
+                    const nombre= document.createElement('p');
+
+                    nombre.textContent = `Clima en ${name}`;
+                    nombre.classList.add('font-bold','text-2xl');
 
                     actual.innerHTML = `${centigrados} &#8451;`;
                     actual.classList.add('font-bold','text-6xl');
+
+                            const max = document.createElement('p');
+
+                    max.innerHTML = `MAX:${centigradosMax} &#8451;`;
+                    max.classList.add('text-xl');
+
+                            const min = document.createElement('p');
+
+                    min.innerHTML = `MIN:${centigradosMin} &#8451;`;
+                    min.classList.add('text-xl');
 
 
                     const resultadoDiv = document.createElement('div');
 
 
                     resultadoDiv.classList.add('text-center','text-white');
+                    resultadoDiv.appendChild(nombre);
                     resultadoDiv.appendChild(actual);
+                     resultadoDiv.appendChild(max);
+                      resultadoDiv.appendChild(min);
 
                     resultado.appendChild(resultadoDiv);
 
